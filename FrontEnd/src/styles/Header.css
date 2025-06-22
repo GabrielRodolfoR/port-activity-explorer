@@ -1,0 +1,26 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #2F5D8A;
+  border-bottom: 1px solid #dcdcdc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+.header-logo {
+  height: 60px;
+  margin-right: 20px;
+}
+
+.header-title {
+  font-size: 1.75rem;
+  color: #fdfdfd;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}

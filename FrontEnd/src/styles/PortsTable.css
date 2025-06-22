@@ -1,0 +1,73 @@
+.ports-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.ports-table thead {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: left;
+}
+
+.ports-table th,
+.ports-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #ddd;
+
+}
+
+.ports-table tbody tr:hover {
+    background-color: #f0f7fb;
+}
+
+.ports-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+@media (max-width: 600px) {
+    .ports-table thead {
+        display: none;
+    }
+
+    .ports-table,
+    .ports-table tbody,
+    .ports-table tr,
+    .ports-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .ports-table tr {
+        margin-bottom: 15px;
+        border-bottom: 2px solid var(--primary-color);
+        border-radius: 12px;
+        padding: 10px;
+        background-color: white;
+    }
+
+    .ports-table td {
+        padding-left: 50%;
+        position: relative;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    .ports-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 16px;
+        top: 12px;
+        font-weight: 600;
+        color: var(--primary-color);
+        white-space: nowrap;
+    }
+
+}

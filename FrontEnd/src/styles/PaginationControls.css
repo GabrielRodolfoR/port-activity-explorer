@@ -1,0 +1,75 @@
+.pagination-controls {
+  position: relative;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+/* Centraliza o grupo de botões de paginação */
+.pagination-center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+/* Grupo genérico (botões ou select) */
+.pagination-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Posiciona o grupo do select no canto direito */
+.items-per-page-group {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Estilo do label */
+.pagination-group label {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--primary-color);
+}
+
+/* Estilo dos selects e inputs */
+.pagination-group select,
+.pagination-group input {
+  padding: 8px 12px;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+  min-width: 100px;
+}
+
+.pagination-group select:focus,
+.pagination-group input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 6px var(--accent-color);
+}
+
+/* Estilo dos botões */
+.pagination-group button {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-group button:hover {
+  background-color: var(--primary-color);
+}
+
+/* Estilo do texto "Página x de y" */
+.page-info {
+  font-weight: 500;
+  color: var(--primary-color);
+}

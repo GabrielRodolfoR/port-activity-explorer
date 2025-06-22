@@ -1,0 +1,30 @@
+.date-filter{
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.date-filter label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--primary-color);
+}
+
+.date-filter input[type="date"] {
+    margin-top: 6px;
+    padding: 8px 12px;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.date-filter input[type="date"]:focus{
+    border-color: var(--accent-color);
+    box-shadow: 0 0 6px var(--accent-color);
+}

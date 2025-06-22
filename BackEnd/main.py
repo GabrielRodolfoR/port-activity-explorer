@@ -26,7 +26,7 @@ async def read():
 @app.get("/port_activity", response_model=List[PortActivitySchema])
 def get_port_activities(
     page: int = Query(1, ge=1),
-    page_size: int = Query(10, ge=10, le=100),
+    page_size: int = Query(25, ge=25, le=200),
     db: Session = Depends(get_db),
 ):
     offset = (page - 1) * page_size
@@ -35,7 +35,7 @@ def get_port_activities(
 
 
 @app.get("/port_activity/{object_id}", response_model=DetailedPortActivitySchema)
-def get_port_details_by_object_id(object_id: str, db: Session = Depends(get_db)):
+def get_port_detailed_activity_by_object_id(object_id: str, db: Session = Depends(get_db)):
     porto = db.query(Porto).filter(Porto.objectid == object_id).first()
     if not porto:
         raise HTTPException(status_code=404, detail="Porto não encontrado")
