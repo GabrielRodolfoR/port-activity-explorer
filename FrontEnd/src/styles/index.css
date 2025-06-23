@@ -46,19 +46,40 @@ a:hover {
 
 .top-filters {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   gap: 24px;
   flex-wrap: wrap;
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.top-filters .search-bar {
-  flex: 1 1 300px;
+.top-filters .search-bar-with-filter {
+  flex: 1 1 460px;
+  display: flex;
+  align-items: center;
 }
 
 .top-filters .date-filter {
   display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
   gap: 16px;
-  flex-wrap: wrap;
+  flex: 0 0 auto;
+}
+
+.details-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  color: var(--primary-color);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.details-button:hover {
+  color: var(--accent-color);
+  transform: scale(1.25);
 }

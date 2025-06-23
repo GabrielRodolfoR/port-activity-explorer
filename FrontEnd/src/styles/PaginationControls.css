@@ -4,14 +4,12 @@
   padding-top: 10px;
 }
 
-/* Centraliza o grupo de botões de paginação */
 .pagination-center {
   display: flex;
   justify-content: center;
   margin-bottom: 12px;
 }
 
-/* Grupo genérico (botões ou select) */
 .pagination-group {
   display: flex;
   align-items: center;
@@ -19,23 +17,20 @@
   flex-wrap: wrap;
 }
 
-/* Posiciona o grupo do select no canto direito */
 .items-per-page-group {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-/* Estilo do label */
 .pagination-group label {
   font-weight: 500;
   font-size: 0.95rem;
   color: var(--primary-color);
 }
 
-/* Estilo dos selects e inputs */
 .pagination-group select,
-.pagination-group input {
+.pagination-group input:not(.page-input) {
   padding: 8px 12px;
   border: 2px solid var(--primary-color);
   border-radius: 8px;
@@ -52,7 +47,6 @@
   box-shadow: 0 0 6px var(--accent-color);
 }
 
-/* Estilo dos botões */
 .pagination-group button {
   background-color: var(--accent-color);
   color: white;
@@ -68,8 +62,37 @@
   background-color: var(--primary-color);
 }
 
-/* Estilo do texto "Página x de y" */
 .page-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-weight: 500;
   color: var(--primary-color);
+}
+
+.page-info .page-input {
+  width: 60px;
+  padding: 4px 0;
+  font-size: 1rem;
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--primary-color);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.page-info .page-input:focus {
+  border-bottom-color: var(--accent-color);
+  box-shadow: none;
+}
+
+.page-info .page-input::-webkit-outer-spin-button,
+.page-info .page-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.page-info .page-input[type=number] {
+  -moz-appearance: textfield;
 }

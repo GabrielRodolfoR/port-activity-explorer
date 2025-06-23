@@ -8,9 +8,6 @@ class Porto(Base):
     # Modelo de Porto
     portid = Column(String)
     date = Column(String)
-    year = Column(Integer)
-    month = Column(Integer)
-    day = Column(Integer)
     portname = Column(String, index=True)
     country = Column(String)
     ISO3 = Column(String)

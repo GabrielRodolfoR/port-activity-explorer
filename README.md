@@ -56,6 +56,7 @@ A API estará disponível em: http://localhost:8000
 ```bash
 cd FrontEnd
 npm install
+npm install axios # AutoComplete
 npm run dev
 ```
 A interface estará disponível em: http://localhost:5173
