@@ -1,10 +1,11 @@
 from fastapi import FastAPI, Depends, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
 from models import Porto
 from schemas import PortActivitySchema, DetailedPortActivitySchema
 from database import session_local
+from datetime import date
 
 app = FastAPI()
 
@@ -36,17 +37,25 @@ async def read():
 def get_port_activities(
     page: int = Query(1, ge=1),
     page_size: int = Query(50, ge=25, le=200),
-    portname: str = None,
-    country: str = None,
+    portname: Optional[str] = None,
+    country: Optional[str] = None,
+    data_inicial: Optional[date] = None,
+    data_final: Optional[date] = None,
     db: Session = Depends(get_db),
 ):
     offset = (page - 1) * page_size
     query = db.query(Porto)
 
-    if portname:
+    if portname:    
         query = query.filter(Porto.portname == portname)
     if country:
         query = query.filter(Porto.country == country)
+    if data_inicial and data_final:
+        query = query.filter(Porto.date.between(data_inicial, data_final))
+    elif data_inicial:
+        query = query.filter(Porto.date >= data_inicial)
+    elif data_final:
+        query = query.filter(Porto.date <= data_final)
 
     return query.offset(offset).limit(page_size).all()
 
@@ -55,6 +64,7 @@ def get_port_activities(
 def get_port_activity_count(
     portname: str = Query(None),
     country: str = Query(None),
+    date: date = Query(None),
     db: Session = Depends(get_db),
 ):
     query = db.query(Porto)
@@ -63,6 +73,8 @@ def get_port_activity_count(
         query = query.filter(Porto.country == country)
     if portname:
         query = query.filter(Porto.portname == portname)
+    if date:
+        query = query.filter(Porto.date == date)
 
 
     total_count = query.count()

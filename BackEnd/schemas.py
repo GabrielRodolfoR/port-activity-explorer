@@ -1,10 +1,11 @@
 from pydantic import BaseModel
+from datetime import date
 
 class PortActivitySchema(BaseModel):
     
     # Modelo de Porto
     portid: str
-    date: str
+    date: date
     portname: str
     country: str
     ISO3: str

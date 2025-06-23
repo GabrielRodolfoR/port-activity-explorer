@@ -8,7 +8,7 @@ import DateFilter from './components/DateFilter';
 import { fetchPortActivityCount } from './services/api';
 
 export default function App() {
-  const [searchField, setSearchField] = useState("country"); // controla campo ativo (country / portname)
+  const [searchField, setSearchField] = useState("country");
   const [filters, setFilter] = useState(null);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(50);
@@ -47,11 +47,11 @@ export default function App() {
             field={searchField}
             onFieldChange={(newField) => {
               setSearchField(newField);
-              setFilter(null);  // limpa filtro ao trocar campo
+              setFilter(null);
               setPage(1);
             }}
             onSelect={(value) => {
-              setFilter({ [searchField]: value }); // monta filtro dinâmico conforme campo
+              setFilter({ [searchField]: value });
               setPage(1);
             }}
           />
