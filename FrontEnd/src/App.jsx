@@ -132,7 +132,30 @@ export default function App() {
           <div className="pagination-group">
             <button onClick={() => setPage(1)} disabled={page === 1}>{"<<"}</button>
             <button onClick={() => setPage(prev => Math.max(prev - 1, 1))} disabled={page === 1}>{"<"}</button>
-            <span className="page-info">Página {page} de {totalPages}</span>
+
+            <span className="page-info">
+              Página
+              <input
+                type="number"
+                className="page-input"
+                value={page}
+                min="1"
+                max={totalPages}
+                onChange={(e) => {
+                  const value = parseInt(e.target.value);
+                  if (!isNaN(value)) {
+                    setPage(value > totalPages ? totalPages : value < 1 ? 1 : value);
+                  }
+                }}
+                onBlur={(e) => {
+                  if (!e.target.value) setPage(1);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") e.target.blur();
+                }}
+              />
+              de {totalPages}
+            </span>
             <button onClick={() => setPage(prev => Math.min(prev + 1, totalPages))} disabled={page === totalPages}>{">"}</button>
             <button onClick={() => setPage(totalPages)} disabled={page === totalPages}>{">>"}</button>
           </div>

@@ -10,6 +10,7 @@ Projeto para pesquisa de atividades de porto utilizando os dados de [**Global Da
     - FastAPI
     - SQLAlchemy
     - Uvicorn
+    - Pandas
 - **SQLite** (banco local)
 
 ### Frontend
@@ -25,7 +26,7 @@ Projeto para pesquisa de atividades de porto utilizando os dados de [**Global Da
 ## Requisitos:
 - Python 3.13.5 instalado
 - Node.js v20+ instalado
-- Pelo menos 2 GB de espaço livre em disco
+- Pelo menos 3 GB de espaço livre em disco
 - Memória suficiente para processar o dataset
 - Clonar este repositório e baixar o dataset CSV original
 

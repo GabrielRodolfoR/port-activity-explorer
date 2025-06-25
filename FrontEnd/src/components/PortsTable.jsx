@@ -26,10 +26,8 @@ export default function PortsTable({ page, pageSize, filters }) {
   }, [page, pageSize, filters]);
 
   const handleDetailsClick = async (objectId) => {
-    console.log("handleDetailsClick chamado com objectId:", objectId);
     try {
       const details = await fetchPortDetails(objectId);
-      console.log("Detalhes recebidos:", details);
       setSelectedPort(details);
       setIsModalOpen(true);
     } catch (err) {
@@ -74,7 +72,6 @@ export default function PortsTable({ page, pageSize, filters }) {
                   className="details-button"
                   title="Detalhes do Porto"
                   onClick={() => {
-                    console.log("Clicou no detalhe do porto:", port.objectid);
                     handleDetailsClick(port.objectid);
                   }}
                 >

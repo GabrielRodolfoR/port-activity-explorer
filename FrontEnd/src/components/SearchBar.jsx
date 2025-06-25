@@ -22,7 +22,7 @@ export default function SearchBar({ field, onFieldChange, onSelect }) {
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
-      if (query.length >= 1) {
+      if (query.length >= 0) {
         fetchResults(query, field);
       } else {
         setResults([]);
@@ -76,7 +76,7 @@ export default function SearchBar({ field, onFieldChange, onSelect }) {
         value={field}
         onChange={(e) => {
           onFieldChange(e.target.value);
-          setQuery(""); // opcional: limpa a busca ao trocar campo
+          setQuery("");
         }}
       >
         <option value="portname">Porto</option>
