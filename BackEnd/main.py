@@ -50,32 +50,45 @@ def get_port_activities(
         query = query.filter(Porto.portname == portname)
     if country:
         query = query.filter(Porto.country == country)
+
     if data_inicial and data_final:
-        query = query.filter(Porto.date.between(data_inicial, data_final))
+        if data_inicial == data_final:
+            query = query.filter(Porto.date == data_inicial)
+        else:
+            query = query.filter(Porto.date.between(data_inicial, data_final))
     elif data_inicial:
-        query = query.filter(Porto.date >= data_inicial)
+            query = query.filter(Porto.date >= data_inicial)
     elif data_final:
-        query = query.filter(Porto.date <= data_final)
+            query = query.filter(Porto.date <= data_final)
+
 
     return query.offset(offset).limit(page_size).all()
 
 
 @app.get("/port_activity/count")
 def get_port_activity_count(
-    portname: str = Query(None),
-    country: str = Query(None),
-    date: date = Query(None),
+    portname: Optional[str] = Query(None),
+    country: Optional[str] = Query(None),
+    data_inicial: Optional[date] = Query(None),
+    data_final: Optional[date] = Query(None),
     db: Session = Depends(get_db),
 ):
     query = db.query(Porto)
 
-    if country:
-        query = query.filter(Porto.country == country)
     if portname:
         query = query.filter(Porto.portname == portname)
-    if date:
-        query = query.filter(Porto.date == date)
+    if country:
+        query = query.filter(Porto.country == country)
 
+    if data_inicial and data_final:
+        if data_inicial == data_final:
+            query = query.filter(Porto.date == data_inicial)
+        else:
+            query = query.filter(Porto.date.between(data_inicial, data_final))
+    elif data_inicial:
+        query = query.filter(Porto.date >= data_inicial)
+    elif data_final:
+        query = query.filter(Porto.date <= data_final)
 
     total_count = query.count()
 
@@ -112,7 +125,6 @@ def autocomplete(
         db.query(column).filter(column.ilike(f"%{term}%")).distinct().limit(20).all()
     )
 
-    # Transforma resultado [(val,), (val,), ...] em [val, val, ...]
     return [r[0] for r in results if r[0] is not None]
 
 

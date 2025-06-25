@@ -27,9 +27,6 @@ class DetailedPortActivitySchema(PortActivitySchema):
     # Modelo de Porto
     portid: str
     date: str
-    year: int
-    month: int
-    day: int
     portname: str
     country: str
     ISO3: str

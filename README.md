@@ -64,8 +64,10 @@ A interface estará disponível em: http://localhost:5173
 ---
 
 ## Funcionalidades
-- Conversão do arquivo CSV em banco de dados SQLite (portos.db)
-- Paginação de registros (25, 50, 100 ou 200 por página)
-- Filtro por página
-- Consulta por objectid via API
-- FrontEnd inicial em desenvolvimento
+
+- ETL (Extract, Transform, Load) para importar dados do arquivo CSV original para o banco SQLite (`portos.db`)
+- API RESTful desenvolvida com FastAPI para consulta e filtragem dos dados portuários
+- Consulta paginada dos dados de atividade portuária, com seleção de itens por página (25, 50, 100 ou 200)
+- Contagem total de registros para paginação dinâmica
+- Autocomplete para campos de filtro (nome do porto e país) para facilitar a busca
+- Tabela dinâmica exibindo resultados paginados com botão para abrir modal de detalhes completos do porto, como importações, exportações, tipos de cargas e port calls

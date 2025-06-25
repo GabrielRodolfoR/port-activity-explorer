@@ -5,12 +5,14 @@
   right: 0;
   height: 72px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
   background-color: #2F5D8A;
   border-bottom: 1px solid #dcdcdc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   z-index: 1000;
+  flex-wrap: wrap;
 }
 
 .header-logo {
@@ -23,4 +25,48 @@
   color: #fdfdfd;
   font-weight: 600;
   letter-spacing: 0.5px;
+}
+
+/* Container para logo e título juntos */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Navegação */
+.header-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #fdfdfd;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #A9D6FF;
+}
+
+/* Responsividade simples para telas menores */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding: 16px;
+    align-items: flex-start;
+  }
+
+  .header-nav {
+    margin-top: 8px;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-link {
+    padding: 4px 0;
+  }
 }

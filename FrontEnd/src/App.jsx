@@ -9,10 +9,18 @@ import { fetchPortActivityCount } from './services/api';
 
 export default function App() {
   const [searchField, setSearchField] = useState("country");
-  const [filters, setFilter] = useState(null);
+  const [searchValue, setSearchValue] = useState(null);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(50);
-  const [totalItems, setTotalItems] = useState(3486153);
+  const [totalItems, setTotalItems] = useState(0);
+
+  const filters = {
+    ...(searchValue ? { [searchField]: searchValue } : {}),
+    ...(startDate ? { startDate } : {}),
+    ...(endDate ? { endDate } : {}),
+  };
 
   const handleItemsPerPageChange = (e) => {
     setPageSize(Number(e.target.value));
@@ -22,7 +30,7 @@ export default function App() {
   useEffect(() => {
     async function updateTotalCount() {
       try {
-        const total = await fetchPortActivityCount(filters || {});
+        const total = await fetchPortActivityCount(filters);
         setTotalItems(total);
         const totalPages = Math.ceil(total / pageSize);
         if (page > totalPages) setPage(totalPages || 1);
@@ -40,22 +48,37 @@ export default function App() {
     <>
       <Header />
       <div className="container">
-        <h2 className="title">Bem-vindo ao Sistema!</h2>
+        <section className="welcome-banner">
+          <h1>Sistema de Pesquisa Portuária</h1>
+          <p>Explore dados completos sobre atividades portuárias, importações e exportações em todo o mundo.</p>
+          <p>Use os filtros para refinar sua busca e obter relatórios detalhados.</p>
+        </section>
 
         <div className="top-filters">
           <SearchBar
             field={searchField}
             onFieldChange={(newField) => {
               setSearchField(newField);
-              setFilter(null);
+              setSearchValue(null);
               setPage(1);
             }}
             onSelect={(value) => {
-              setFilter({ [searchField]: value });
+              setSearchValue(value);
               setPage(1);
             }}
           />
-          <DateFilter />
+          <DateFilter
+            startDate={startDate}
+            endDate={endDate}
+            onStartDateChange={(e) => {
+              setStartDate(e.target.value);
+              setPage(1);
+            }}
+            onEndDateChange={(e) => {
+              setEndDate(e.target.value);
+              setPage(1);
+            }}
+          />
         </div>
 
         <div className="pagination-controls">
